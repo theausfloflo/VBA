@@ -1,0 +1,24 @@
+###########################################################################################################################################
+##########################################################Microsoft Office Access##########################################################
+###########################################################################################################################################
+
+
+##########################################################
+Export Result of a request
+##########################################################
+
+      Option Compare Database
+
+
+      Sub test()
+          Dim outputFileName As String
+
+          outputFileName = CurrentProject.Path & "\ReRunExport" & ".xls"
+          DoCmd.TransferSpreadsheet acExport, acSpreadsheetTypeExcel9, "Requête1", outputFileName, True
+          'DoCmd.TransferSpreadsheet acExport, acSpreadsheetTypeExcel9, "Table2", outputFileName, True
+      End Sub
+
+
+##########################################################
+
+##########################################################
