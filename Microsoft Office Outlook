@@ -1,1 +1,126 @@
+###########################################################################################################################################
+##########################################################Microsoft Office Outlook#########################################################
+###########################################################################################################################################
+
+
+##########################################################
+Interact with a folder in a generic mailbox
+##########################################################
+
+      Private Sub Application_Startup()
+
+          Dim olApp As Outlook.Application
+          Dim Comptes_messagerie()
+          Dim Dossier As Outlook.MAPIFolder
+
+          'définition application
+          Set olApp = Outlook.Application
+          'définition Comptes de messagerie
+          Comptes_messagerie = Array("mail@mailbox.com")
+          'balayage Dossiers Outlook
+          For Each Dossier In olApp.GetNamespace("MAPI").Folders
+              If UBound(Filter(Comptes_messagerie, Dossier.Name)) > -1 Then
+                  'assignation évenements de la boîte de réception du Compte de messagerie
+                  Set myOlItems = Dossier.Folders("folder").Items
+              End If
+          Next Dossier
+
+      End Sub
+
+
+##########################################################
+Search specific words in a mail and interact with Excel file
+##########################################################
+
+      Dim Msg As Outlook.MailItem
+
+        If TypeName(item) = "MailItem" Then
+          Set Msg = item
+          If Msg.Subject Like "*Keyword1*" & "*Keyword2" & "*Keyword3" Then
+               Dim ExApp As Excel.Application
+               Dim ExWbk As Workbook
+               Set ExApp = New Excel.Application
+               Set ExWbk = ExApp.Workbooks.Open("Excel file)
+               ExApp.Visible = True
+               #launch a module with a specific macro
+               ExWbk.Application.run "Module1.Macro"
+               ExWbk.Close SaveChanges:=True
+               Msg.UnRead = False
+          End If
+
+
+##########################################################
+Create a complement bar with buttons
+##########################################################
+
+      Public WithEvents ButtonIncident As Office.CommandBarButton
+      Attribute ButtonIncident.VB_VarHelpID = -1
+
+
+      Public IncidentReport As String
+
+      Private Sub Application_AdvancedSearchComplete(ByVal SearchObject As Search)
+
+      End Sub
+
+      Private Sub Application_Startup()
+                ActiveBouton
+                IncidentReport = Path
+      End Sub
+      Public Sub ActiveBouton()
+        Dim oExplorer As Outlook.explorer
+        Set oExplorer = Application.ActiveExplorer
+        Set ButtonIncident = CreateCommandBarButtonIncident(oExplorer.CommandBars)
+
+
+      End Sub
+
+      Private Function CreateCommandBarButtonIncident(oBars As Office.CommandBars) As Office.CommandBarButton
+        On Error Resume Next
+        Dim oMenu As Office.CommandBar
+        Dim oBtnIncident As Office.CommandBarButton
+        Const BAR_NAME As String = "Name of the bar"
+        Const CMD_NAME_INCIDENT As String = "Name2"
+
+        Set oMenu = oBars(BAR_NAME)
+        If oMenu Is Nothing Then
+          Set oMenu = oBars.Add(BAR_NAME, msoBarTop, , True)
+          Set oBtnIncident = oMenu.Controls.Add(msoControlButton)
+          oBtnIncident.Style = msoButtonIconAndCaption
+          oBtnIncident.FaceId = 1675
+          oBtnIncident.Caption = CMD_NAME_INCIDENT
+          oBtnIncident.Tag = CMD_NAME_INCIDENT
+          oBtnIncident.DescriptionText = "Name of the button 1"
+          oBtnIncident.BeginGroup = True
+
+        Else
+          Set oBtnIncident = oMenu.FindControl(, , CMD_NAME_INCIDENT)
+          If oBtnIncident Is Nothing Then
+            Set oBtnIncident = oMenu.Controls.Add(msoControlButton)
+            oBtnIncident.Style = msoButtonIconAndCaption
+          oBtnIncident.FaceId = 1675
+          oBtnIncident.Caption = CMD_NAME_INCIDENT
+          oBtnIncident.BeginGroup = True
+          oBtnIncident.Tag = CMD_NAME_INCIDENT
+              oBtnIncident.DescriptionText = "Name of the button 2"
+
+        End If
+        End If
+
+        oMenu.Visible = True
+        Set CreateCommandBarButtonIncident = oBtnIncident
+      End Function
+
+
+##########################################################
+Create a complement bar with buttons
+##########################################################
+
+
+
+
+
+
+
+
 
