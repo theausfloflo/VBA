@@ -9,8 +9,65 @@ Search a value in a column
 
       Range(Columns("A").Find(What:="", after:=Range("A1")).Address) = VALUE
 
+
 ##########################################################
+Send a mail
+##########################################################
+  
+       Set OutApp = CreateObject("Outlook.Application")
+              Set OutMail = OutApp.CreateItem(0)
+
+              On Error Resume Next
+              With OutMail
+                  .to = "email adress"
+                  .CC = "email adress"
+                  .BCC = "email adress"
+                  .Subject = "Subject of the mail " & Range("A1").Value
+                  .Body = "Body text"
+                  .Attachments.Add ActiveWorkbook.FullName
+                  '.Attachments.Add ("C:\test.txt")
+                  '.Send   'or use
+                  .Display
+              End With
+              On Error GoTo 0
+
+              Set OutMail = Nothing
+              Set OutApp = Nothing
+
+
+##########################################################
+Send a mail
+##########################################################
+
+      If Range("A1") < Date Then
+                  Dim i As Long, wsName As String, temp As String
+                  #add a new worksheet after the last & increment
+                  Worksheets.Add After:=Worksheets(Worksheets.Count)
+                  wsName = "W0"
+                  If WorksheetExists(wsName) Then
+                      temp = Left(wsName, 3)
+                      i = 1
+                      wsName = temp & i
+                      Do While WorksheetExists(wsName)
+                          i = i + 1
+                          wsName = temp & i
+                      Loop
+                  End If
+                  #Define the new created sheet like the active sheet
+                  ActiveSheet.Name = wsName
+                  #copy the first content of a specific sheet
+                  Sheets("W0").Range("A1:J9").Copy
+                  #paste in the active sheet
+                  ActiveSheet.Paste
+                  Application.CutCopyMode = False
+          End If
+
 
 ##########################################################
 
-      
+##########################################################
+
+
+
+
+
