@@ -1,0 +1,969 @@
+Public WithEvents ButtonOpen As Office.CommandBarButton
+Attribute ButtonOpen.VB_VarHelpID = -1
+Public WithEvents ButtonClose As Office.CommandBarButton
+Attribute ButtonClose.VB_VarHelpID = -1
+Public WithEvents ButtonFree As Office.CommandBarButton
+Attribute ButtonFree.VB_VarHelpID = -1
+Public WithEvents ButtonReopen As Office.CommandBarButton
+Attribute ButtonReopen.VB_VarHelpID = -1
+Public WithEvents ButtonExtract As Office.CommandBarButton
+Attribute ButtonExtract.VB_VarHelpID = -1
+Public WithEvents ButtonTest As Office.CommandBarButton
+Attribute ButtonTest.VB_VarHelpID = -1
+Public WithEvents ButtonCheckLists As Office.CommandBarButton
+Attribute ButtonCheckLists.VB_VarHelpID = -1
+Public WithEvents ButtonPlannings As Office.CommandBarButton
+Attribute ButtonPlannings.VB_VarHelpID = -1
+Public WithEvents ButtonAWP3Filer As Office.CommandBarButton
+Attribute ButtonAWP3Filer.VB_VarHelpID = -1
+Public WithEvents oMenuFic1 As Office.CommandBarButton
+Attribute oMenuFic1.VB_VarHelpID = -1
+Public WithEvents oMenuFic2 As Office.CommandBarButton
+Attribute oMenuFic2.VB_VarHelpID = -1
+Public WithEvents oMenuFic3 As Office.CommandBarButton
+Attribute oMenuFic3.VB_VarHelpID = -1
+Public WithEvents oMenuFic4 As Office.CommandBarButton
+Attribute oMenuFic4.VB_VarHelpID = -1
+Public WithEvents oMenuFic5 As Office.CommandBarButton
+Attribute oMenuFic5.VB_VarHelpID = -1
+Public WithEvents oMenuFic6 As Office.CommandBarButton
+Attribute oMenuFic6.VB_VarHelpID = -1
+Public WithEvents oMenuFic7 As Office.CommandBarButton
+Attribute oMenuFic7.VB_VarHelpID = -1
+Public WithEvents oMenuFic8 As Office.CommandBarButton
+Attribute oMenuFic8.VB_VarHelpID = -1
+Public WithEvents oMenuFic9 As Office.CommandBarButton
+Attribute oMenuFic9.VB_VarHelpID = -1
+Public WithEvents oMenuFic11 As Office.CommandBarButton
+Attribute oMenuFic11.VB_VarHelpID = -1
+Public WithEvents oMenuFic12 As Office.CommandBarButton
+Attribute oMenuFic12.VB_VarHelpID = -1
+Public WithEvents oMenuFic13 As Office.CommandBarButton
+Attribute oMenuFic13.VB_VarHelpID = -1
+Public WithEvents oMenuFic14 As Office.CommandBarButton
+Attribute oMenuFic14.VB_VarHelpID = -1
+Public WithEvents oMenuFic15 As Office.CommandBarButton
+Attribute oMenuFic15.VB_VarHelpID = -1
+Public WithEvents oMenuFic16 As Office.CommandBarButton
+Attribute oMenuFic16.VB_VarHelpID = -1
+Public WithEvents oMenuFic17 As Office.CommandBarButton
+Attribute oMenuFic17.VB_VarHelpID = -1
+Public WithEvents oMenuFic18 As Office.CommandBarButton
+Attribute oMenuFic18.VB_VarHelpID = -1
+Public WithEvents oMenuFic19 As Office.CommandBarButton
+Attribute oMenuFic19.VB_VarHelpID = -1
+Public WithEvents oMenuFic20 As Office.CommandBarButton
+Attribute oMenuFic20.VB_VarHelpID = -1
+Public WithEvents oMenuFic21 As Office.CommandBarButton
+Attribute oMenuFic21.VB_VarHelpID = -1
+Public WithEvents oMenuFic22 As Office.CommandBarButton
+Attribute oMenuFic22.VB_VarHelpID = -1
+Public WithEvents oMenuFic23 As Office.CommandBarButton
+Attribute oMenuFic23.VB_VarHelpID = -1
+Public WithEvents oMenuFic24 As Office.CommandBarButton
+Attribute oMenuFic24.VB_VarHelpID = -1
+Public WithEvents oMenuFic31 As Office.CommandBarButton
+Attribute oMenuFic31.VB_VarHelpID = -1
+Public WithEvents oMenuFic32 As Office.CommandBarButton
+Attribute oMenuFic32.VB_VarHelpID = -1
+Public WithEvents oMenuFic33 As Office.CommandBarButton
+Attribute oMenuFic33.VB_VarHelpID = -1
+Public WithEvents oMenuFic34 As Office.CommandBarButton
+Attribute oMenuFic34.VB_VarHelpID = -1
+Public WithEvents oMenuFic35 As Office.CommandBarButton
+Attribute oMenuFic35.VB_VarHelpID = -1
+Public WithEvents oMenuFic41 As Office.CommandBarButton
+Attribute oMenuFic41.VB_VarHelpID = -1
+Public WithEvents oMenuFic42 As Office.CommandBarButton
+Attribute oMenuFic42.VB_VarHelpID = -1
+Public WithEvents oMenuFic43 As Office.CommandBarButton
+Attribute oMenuFic43.VB_VarHelpID = -1
+Public WithEvents oMenuFic44 As Office.CommandBarButton
+Attribute oMenuFic44.VB_VarHelpID = -1
+Public WithEvents oMenuFic45 As Office.CommandBarButton
+Attribute oMenuFic45.VB_VarHelpID = -1
+
+
+Public WithEvents oMenuFicDoc10 As Office.CommandBarButton
+Attribute oMenuFicDoc10.VB_VarHelpID = -1
+Public WithEvents oMenuFicDoc11 As Office.CommandBarButton
+Attribute oMenuFicDoc11.VB_VarHelpID = -1
+
+        
+        
+Public pathDATA As String
+
+Private Sub Application_AdvancedSearchComplete(ByVal SearchObject As Search)
+
+End Sub
+
+Private Sub Application_Startup()
+          ActiveBouton
+          pathDATA = Path
+End Sub
+Public Sub ActiveBouton()
+  Dim oExplorer As Outlook.explorer
+  Set oExplorer = Application.ActiveExplorer
+
+  Set ButtonOpen = CreateCommandBarButtonOpen(oExplorer.CommandBars)
+  Set ButtonClose = CreateCommandBarButtonClose(oExplorer.CommandBars)
+  Set ButtonFree = CreateCommandBarButtonFree(oExplorer.CommandBars)
+  Set ButtonReopen = CreateCommandBarButtonReopen(oExplorer.CommandBars)
+  Set ButtonExtract = CreateCommandBarButtonExtract(oExplorer.CommandBars)
+
+  
+End Sub
+ Private Function CreateCommandBarButtonClose(oBars As Office.CommandBars) As Office.CommandBarButton
+  On Error Resume Next
+  Dim oMenu As Office.CommandBar
+  Dim oBtnOpen As Office.CommandBarButton
+  Dim oBtnClose As Office.CommandBarButton
+  Const BAR_NAME As String = "Gestion des Ticket"
+  Const CMD_NAME_CLOSE As String = "Close Ticket"
+ 
+  Set oMenu = oBars(BAR_NAME)
+
+  
+  If oMenu Is Nothing Then
+    Set oMenu = oBars.Add(BAR_NAME, msoBarTop, , True)
+    Set oBtnClose = oMenu.Controls.Add(msoControlButton)
+    oBtnClose.Style = msoButtonIconAndCaption
+    oBtnClose.FaceId = 1716
+    oBtnClose.Caption = CMD_NAME_CLOSE
+    oBtnClose.Tag = CMD_NAME_CLOSE
+     oBtnClose.BeginGroup = False
+     
+  Else
+    Set oBtnClose = oMenu.FindControl(, , CMD_NAME_CLOSE)
+    If oBtnClose Is Nothing Then
+      Set oBtnClose = oMenu.Controls.Add(msoControlButton)
+    oBtnClose.Style = msoButtonIconAndCaption
+    oBtnClose.FaceId = 1716
+    oBtnClose.Caption = CMD_NAME_CLOSE
+    oBtnClose.Tag = CMD_NAME_CLOSE
+    oBtnClose.BeginGroup = False
+     
+    End If
+  End If
+  
+  oMenu.Visible = True
+  Set CreateCommandBarButtonClose = oBtnClose
+End Function
+Private Function CreateCommandBarButtonExtract(oBars As Office.CommandBars) As Office.CommandBarButton
+  On Error Resume Next
+  Dim oMenu As Office.CommandBar
+  Dim oBtnExtract As Office.CommandBarButton
+  Const BAR_NAME As String = "Gestion des Ticket"
+  Const CMD_NAME_EXTRACT As String = "Extract xls"
+ 
+  Set oMenu = oBars(BAR_NAME)
+  If oMenu Is Nothing Then
+    Set oMenu = oBars.Add(BAR_NAME, msoBarTop, , True)
+    Set oBtnExtract = oMenu.Controls.Add(msoControlButton)
+    oBtnExtract.Style = msoButtonIconAndCaption
+    oBtnExtract.FaceId = 2105
+    oBtnExtract.Caption = CMD_NAME_EXTRACT
+    oBtnExtract.Tag = CMD_NAME_EXTRACT
+    oBtnExtract.DescriptionText = "Extract Tickets of current week & Tickets still open to Excel"
+    oBtnExtract.BeginGroup = True
+  
+  Else
+    If oBtnExtract Is Nothing Then
+    Set oBtnExtract = oMenu.FindControl(, , CMD_NAME_EXTRACT)
+      Set oBtnExtract = oMenu.Controls.Add(msoControlButton)
+      oBtnExtract.Style = msoButtonIconAndCaption
+    oBtnExtract.FaceId = 2105
+    oBtnExtract.Caption = CMD_NAME_EXTRACT
+    oBtnExtract.BeginGroup = True
+    oBtnExtract.Tag = CMD_NAME_EXTRACT
+        oBtnExtract.DescriptionText = "Extract Tickets of current week & Tickets still open to Excel"
+
+  
+  End If
+  End If
+ 
+  oMenu.Visible = True
+  Set CreateCommandBarButtonExtract = oBtnExtract
+End Function
+ 
+ Private Function CreateCommandBarButtonReopen(oBars As Office.CommandBars) As Office.CommandBarButton
+  On Error Resume Next
+  Dim oMenu As Office.CommandBar
+  Dim oBtnReopen As Office.CommandBarButton
+  Const BAR_NAME As String = "Gestion des Ticket"
+  Const CMD_NAME_REOPEN As String = "Reopen Ticket"
+ 
+  Set oMenu = oBars(BAR_NAME)
+  If oMenu Is Nothing Then
+    Set oMenu = oBars.Add(BAR_NAME, msoBarTop, , True)
+    Set oBtnReopen = oMenu.Controls.Add(msoControlButton)
+    oBtnReopen.Style = msoButtonIconAndCaption
+    oBtnReopen.FaceId = 1759
+    oBtnReopen.Caption = CMD_NAME_REOPEN
+    oBtnReopen.Tag = CMD_NAME_REOPEN
+    oBtnReopen.BeginGroup = True
+
+  Else
+    Set oBtnReopen = oMenu.FindControl(, , CMD_NAME_REOPEN)
+    If oBtnReopen Is Nothing Then
+      Set oBtnReopen = oMenu.Controls.Add(msoControlButton)
+    oBtnReopen.Style = msoButtonIconAndCaption
+    oBtnReopen.FaceId = 1759
+    oBtnReopen.Caption = CMD_NAME_REOPEN
+    oBtnReopen.Tag = CMD_NAME_REOPEN
+    oBtnReopen.BeginGroup = True
+    
+    End If
+  End If
+ 
+  oMenu.Visible = True
+  Set CreateCommandBarButtonReopen = oBtnReopen
+End Function
+ 
+ Private Function CreateCommandBarButtonFree(oBars As Office.CommandBars) As Office.CommandBarButton
+  On Error Resume Next
+  Dim oMenu As Office.CommandBar
+  Dim oBtnFree As Office.CommandBarButton
+  Const BAR_NAME As String = "Gestion des Ticket"
+  Const CMD_NAME_FREE As String = "Free Ticket"
+ 
+  Set oMenu = oBars(BAR_NAME)
+  If oMenu Is Nothing Then
+    Set oMenu = oBars.Add(BAR_NAME, msoBarTop, , True)
+    Set oBtnFree = oMenu.Controls.Add(msoControlButton)
+    oBtnFree.Style = msoButtonIconAndCaption
+    oBtnFree.FaceId = 2059
+    oBtnFree.Caption = CMD_NAME_FREE
+    oBtnFree.Tag = CMD_NAME_FREE
+    oBtnFree.BeginGroup = True
+
+  Else
+    Set oBtnFree = oMenu.FindControl(, , CMD_NAME_FREE)
+    If oBtnFree Is Nothing Then
+      Set oBtnFree = oMenu.Controls.Add(msoControlButton)
+       oBtnFree.Style = msoButtonIconAndCaption
+    oBtnFree.FaceId = 2059
+    oBtnFree.Caption = CMD_NAME_FREE
+    oBtnFree.Tag = CMD_NAME_FREE
+    oBtnFree.BeginGroup = True
+    
+  End If
+  End If
+ 
+  oMenu.Visible = True
+  Set CreateCommandBarButtonFree = oBtnFree
+End Function
+ 
+Private Function CreateCommandBarButtonOpen(oBars As Office.CommandBars) As Office.CommandBarButton
+  On Error Resume Next
+  Dim oMenu As Office.CommandBar
+  Dim oBtnOpen As Office.CommandBarButton
+  Const BAR_NAME As String = "Gestion des Ticket"
+  Const CMD_NAME_OPEN As String = "Open Ticket"
+ 
+  Set oMenu = oBars(BAR_NAME)
+  If oMenu Is Nothing Then
+    Set oMenu = oBars.Add(BAR_NAME, msoBarTop, , True)
+    Set oBtnOpen = oMenu.Controls.Add(msoControlButton)
+    oBtnOpen.Style = msoButtonIconAndCaption
+    oBtnOpen.FaceId = 1715
+    oBtnOpen.Caption = CMD_NAME_OPEN
+    oBtnOpen.Tag = CMD_NAME_OPEN
+     oBtnOpen.BeginGroup = True
+
+  Else
+    Set oBtnOpen = oMenu.FindControl(, , CMD_NAME_OPEN)
+    If oBtnOpen Is Nothing Then
+      Set oBtnOpen = oMenu.Controls.Add(msoControlButton)
+    oBtnOpen.Style = msoButtonIconAndCaption
+    oBtnOpen.FaceId = 1715
+    oBtnOpen.Caption = CMD_NAME_OPEN
+    oBtnOpen.Tag = CMD_NAME_OPEN
+    oBtnOpen.BeginGroup = True
+     
+    End If
+  End If
+  
+  oMenu.Visible = True
+  Set CreateCommandBarButtonOpen = oBtnOpen
+End Function
+Private Function CreateCommandBarButtonDocOpe(oBars As Office.CommandBars) As Office.CommandBarButton
+  On Error Resume Next
+  Dim oMenu As Office.CommandBar
+  Dim oBtnTest As Office.CommandBarPopup
+  Const BAR_NAME As String = "Documents"
+  Const CMD_NAME_Test As String = "Documents Operationnels"
+
+  Set oMenu = oBars(BAR_NAME)
+  If oMenu Is Nothing Then
+    Set oMenu = oBars.Add(BAR_NAME, msoBarTop, , True)
+    Set oBtnTest = oMenu.Controls.Add(msoControlPopup)
+
+        oBtnTest.Caption = CMD_NAME_Test
+        oBtnTest.Tag = CMD_NAME_Test
+        Set oMenuFic1 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic1.Caption = "Actualités et Directives"
+        oMenuFic1.Style = msoButtonIconAndCaption
+        oMenuFic1.FaceId = 1074
+        
+        Set oMenuFic2 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic2.Caption = "C/R Activités"
+        oMenuFic2.Style = msoButtonIconAndCaption
+        oMenuFic2.FaceId = 2498
+        
+        Set oMenuFic3 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic3.Caption = "Actions"
+        oMenuFic3.Style = msoButtonIconAndCaption
+        oMenuFic3.FaceId = 2946
+        
+        Set oMenuFic4 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic4.Caption = "Contacts"
+        oMenuFic4.Style = msoButtonIconAndCaption
+        oMenuFic4.FaceId = 3205
+        
+        Set oMenuFic6 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic6.Caption = "Requests"
+        oMenuFic6.Style = msoButtonIconAndCaption
+        oMenuFic6.FaceId = 1438
+                
+        Set oMenuFic9 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic9.Caption = "Communication"
+        oMenuFic9.Style = msoButtonIconAndCaption
+        oMenuFic9.FaceId = 327
+
+     
+        Set oMenuFicDoc10 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFicDoc10.Caption = "Activités"
+        oMenuFicDoc10.Style = msoButtonIconAndCaption
+        oMenuFicDoc10.FaceId = 2105
+        
+        Set oMenuFicDoc11 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFicDoc11.Caption = "CO"
+        oMenuFicDoc11.Style = msoButtonIconAndCaption
+        oMenuFicDoc11.FaceId = 3205
+ 
+       
+        
+  Else
+    Set oBtnTest = oMenu.FindControl(, , CMD_NAME_Test)
+    If oBtnTest Is Nothing Then
+      Set oBtnTest = oMenu.Controls.Add(msoControlPopup)
+        oBtnTest.Caption = CMD_NAME_Test
+        oBtnTest.Tag = CMD_NAME_Test
+        Set oMenuFic1 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic1.Caption = "Actualités et Directives"
+        oMenuFic1.Style = msoButtonIconAndCaption
+        oMenuFic1.FaceId = 1074
+        
+        Set oMenuFic2 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic2.Caption = "C/R Activités"
+        oMenuFic2.Style = msoButtonIconAndCaption
+        oMenuFic2.FaceId = 2498
+        
+        Set oMenuFic3 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic3.Caption = "Actions"
+        oMenuFic3.Style = msoButtonIconAndCaption
+        oMenuFic3.FaceId = 2946
+        
+        Set oMenuFic4 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic4.Caption = "Contacts"
+        oMenuFic4.Style = msoButtonIconAndCaption
+        oMenuFic4.FaceId = 3205
+        
+        Set oMenuFic6 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic6.Caption = "Requests"
+        oMenuFic6.Style = msoButtonIconAndCaption
+        oMenuFic6.FaceId = 1438
+                
+        Set oMenuFic9 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic9.Caption = "Communication"
+        oMenuFic9.Style = msoButtonIconAndCaption
+        oMenuFic9.FaceId = 327
+        
+       
+        Set oMenuFicDoc10 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFicDoc10.Caption = "Activités"
+        oMenuFicDoc10.Style = msoButtonIconAndCaption
+        oMenuFicDoc10.FaceId = 2105
+        
+        Set oMenuFicDoc11 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFicDoc11.Caption = "CO"
+        oMenuFicDoc11.Style = msoButtonIconAndCaption
+        oMenuFicDoc11.FaceId = 3205
+ 
+
+                
+    End If
+  End If
+ 
+  oMenu.Visible = True
+  Set CreateCommandBarButtonDocOpe = oBtnTest
+End Function
+Private Function CreateCommandBarButtonPlannings(oBars As Office.CommandBars) As Office.CommandBarButton
+  On Error Resume Next
+  Dim oMenu As Office.CommandBar
+  Dim oBtnTest As Office.CommandBarPopup
+  'Dim oMenuFic As Office.CommandBarButton
+  Const BAR_NAME As String = "Documents bundle INFOTEL"
+  Const CMD_NAME_Test As String = "Plannings"
+ 
+  Set oMenu = oBars(BAR_NAME)
+  If oMenu Is Nothing Then
+    Set oMenu = oBars.Add(BAR_NAME, msoBarTop, , True)
+    Set oBtnTest = oMenu.Controls.Add(msoControlPopup)
+    oBtnTest.Caption = CMD_NAME_Test
+    oBtnTest.Tag = CMD_NAME_Test
+    Set oMenuFic = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic.Caption = "fic1"
+  Else
+    Set oBtnTest = oMenu.FindControl(, , CMD_NAME_Test)
+    If oBtnTest Is Nothing Then
+      Set oBtnTest = oMenu.Controls.Add(msoControlPopup)
+
+        oBtnTest.Caption = CMD_NAME_Test
+        oBtnTest.Tag = CMD_NAME_Test
+        
+        Set oMenuFic5 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic5.Caption = "Congés 2012"
+        oMenuFic5.Style = msoButtonIconAndCaption
+        oMenuFic5.FaceId = 1992
+        
+        Set oMenuFic8 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic8.Caption = "Congés 2013"
+        oMenuFic8.Style = msoButtonIconAndCaption
+        oMenuFic8.FaceId = 1992
+        
+        Set oMenuFic21 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic21.Caption = "Maintenance et Révision planning 2013"
+        oMenuFic21.Style = msoButtonIconAndCaption
+        oMenuFic21.FaceId = 1992
+        
+        Set oMenuFic22 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic22.Caption = "Revisions planning 2013"
+        oMenuFic22.Style = msoButtonIconAndCaption
+        oMenuFic22.FaceId = 1992
+        
+        Set oMenuFic23 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic23.Caption = "Maintenance Planning 2013"
+        oMenuFic23.Style = msoButtonIconAndCaption
+        oMenuFic23.FaceId = 2802
+        
+   
+        Set oMenuFic24 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic24.Caption = "Opérations Planning 2013"
+        oMenuFic24.Style = msoButtonIconAndCaption
+        oMenuFic24.FaceId = 2105
+
+    End If
+  End If
+ 
+  oMenu.Visible = True
+  Set CreateCommandBarButtonPlannings = oBtnTest
+End Function
+Private Function CreateCommandBarButtonCheckLists(oBars As Office.CommandBars) As Office.CommandBarButton
+  On Error Resume Next
+  Dim oMenu As Office.CommandBar
+  Dim oBtnTest As Office.CommandBarPopup
+  Const BAR_NAME As String = "Documents"
+  Const CMD_NAME_Test As String = "CheckLists"
+ 
+  Set oMenu = oBars(BAR_NAME)
+  If oMenu Is Nothing Then
+    Set oMenu = oBars.Add(BAR_NAME, msoBarTop, , True)
+    Set oBtnTest = oMenu.Controls.Add(msoControlPopup)
+    
+    oBtnTest.Caption = CMD_NAME_Test
+    oBtnTest.Tag = CMD_NAME_Test
+    Set oMenuFic = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic.Caption = "fic1"
+  Else
+    Set oBtnTest = oMenu.FindControl(, , CMD_NAME_Test)
+    If oBtnTest Is Nothing Then
+      Set oBtnTest = oMenu.Controls.Add(msoControlPopup)
+
+        oBtnTest.Caption = CMD_NAME_Test
+        oBtnTest.Tag = CMD_NAME_Test
+        Set oMenuFic11 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic11.Caption = "Projet / Opérations"
+        oMenuFic11.Style = msoButtonIconAndCaption
+        oMenuFic11.FaceId = 1976
+        
+        Set oMenuFic12 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic12.Caption = "Support"
+        oMenuFic12.Style = msoButtonIconAndCaption
+        oMenuFic12.FaceId = 1976
+        
+        Set oMenuFic13 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic13.Caption = "Monitoring"
+        oMenuFic13.Style = msoButtonIconAndCaption
+        oMenuFic13.FaceId = 1976
+        
+        Set oMenuFic14 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic14.Caption = "PROD Monitoring"
+        oMenuFic14.Style = msoButtonIconAndCaption
+        oMenuFic14.FaceId = 1976
+        
+        Set oMenuFic15 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic15.Caption = "Suivi des Révisions"
+        oMenuFic15.Style = msoButtonIconAndCaption
+        oMenuFic15.FaceId = 1976
+        
+        Set oMenuFic16 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic16.Caption = "Service-Delivery"
+        oMenuFic16.Style = msoButtonIconAndCaption
+        oMenuFic16.FaceId = 1976
+        
+        Set oMenuFic17 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic17.Caption = "Filers / Unix"
+        oMenuFic17.Style = msoButtonIconAndCaption
+        oMenuFic17.FaceId = 1976
+        
+        Set oMenuFic18 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic18.Caption = "System / Coordination"
+        oMenuFic18.Style = msoButtonIconAndCaption
+        oMenuFic18.FaceId = 1976
+        
+        Set oMenuFic19 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic19.Caption = "Requests"
+        oMenuFic19.Style = msoButtonIconAndCaption
+        oMenuFic19.FaceId = 1976
+        
+        Set oMenuFic45 = oBtnTest.Controls.Add(msoControlButton)
+        oMenuFic45.Caption = "Requests Transport"
+        oMenuFic45.Style = msoButtonIconAndCaption
+        oMenuFic45.FaceId = 1976
+        
+    End If
+  End If
+ 
+  oMenu.Visible = True
+  Set CreateCommandBarButtonCheckLists = oBtnTest
+End Function
+
+
+
+Private Sub ButtonAWP3Filer_Click(ByVal Ctrl As Office.CommandBarButton, CancelDefault As Boolean)
+
+End Sub
+
+Private Sub ButtonCheckLists_Click(ByVal Ctrl As Office.CommandBarButton, CancelDefault As Boolean)
+
+End Sub
+
+
+Public Sub ButtonTest_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+
+    
+End Sub
+Public Sub ButtonOpen_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+
+    If Not OpenTicket Then MsgBox "fatal error!"
+    
+End Sub
+
+Public Sub ButtonClose_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+ 
+    If Not CloseTicket Then MsgBox "fatal error!"
+    
+End Sub
+
+Public Sub ButtonFree_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+
+    If Not freeTicket Then MsgBox "fatal error!"
+    
+End Sub
+
+Public Sub ButtonReopen_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+
+    If Not reopenTicket Then MsgBox "fatal error!"
+    
+End Sub
+Public Sub ButtonExtract_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+
+    If Not Extract Then MsgBox "fatal error!"
+    
+End Sub
+
+
+Public Sub oMenuFic1_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "powerpnt.exe """ & pathDATA & "\Actualités et Directives.pptx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+  
+
+Public Sub oMenuFic2_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "winword.exe """ & pathDATA & "\TD_Production_Monitoring.docx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Private Sub oMenuFic24_Click(ByVal Ctrl As Office.CommandBarButton, CancelDefault As Boolean)
+
+
+On Error GoTo gereErreur
+
+Shell "Excel.exe """ & pathDATA & "\Comite Operationnel\PlanningOperationsMajeures.xls""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+    
+
+End Sub
+
+Public Sub oMenuFic3_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "excel.exe """ & pathDATA & "\MoM\INFOTEL_Action_follow_up.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+Public Sub oMenuFic4_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "excel.exe """ & pathDATA & "\CONTACTS.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+
+Public Sub oMenuFic5_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\Planning Congés Prod_monitoring\Planning&Congés_2012.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic6_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "excel.exe """ & pathDATA & "\Request Fulfilment\Medium\Journal des requests.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+
+Public Sub oMenuFic7_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "C:\Program Files (x86)\Internet Explorer\iexplore.exe """ & "https://link.com/file.xls""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+Public Sub oMenuFic8_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\Planning Congés Prod_monitoring\Planning&Congés_2013.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+Public Sub oMenuFic9_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\COMMUNICATION_TEMPLATE\Send_message.xlsm""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+Public Sub oMenuFic11_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\CheckLists\Check list - Projet Opérations.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+  
+
+Public Sub oMenuFic12_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\CheckLists\Check list Support.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+Public Sub oMenuFic13_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "excel.exe """ & pathDATA & "\CheckLists\Check list monitoring.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+Public Sub oMenuFic14_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "excel.exe """ & pathDATA & "\CheckLists\Checklist Actions Team.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+
+Public Sub oMenuFic15_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\CheckLists\Check list Suivi des Révisions TD.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic16_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "excel.exe """ & pathDATA & "\CheckLists\Check list Service-Delivery.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+
+Public Sub oMenuFic17_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\CheckLists\Check list Filers  Unix.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+Public Sub oMenuFic18_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\CheckLists\Check list Coordination.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+  
+
+Public Sub oMenuFic19_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\CheckLists\Check list Requests.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic21_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\TD Revision Follow-up\Maint_revisions_planning_2013.xls""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic22_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\TD Revision Follow-up\revisions_planning_2013.xls""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic23_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "powerpnt.exe """ & pathDATA & "\Check\Maintenance Planning 2013.pptx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic41_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "winword.exe """ & pathDATA & "\AWP3-AWP4\Filer\Doc filer\Traitement des demandes Filer v12_3.doc""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic42_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\AWP3-AWP4\Filer\MFSRS_Template_V1.3.xls""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic43_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\Filer\Template_V1.3_EXEMPLES.xls""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic44_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "C:\Program Files (x86)\Internet Explorer\iexplore.exe """ & "https://link.com/file.xls""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+Public Sub oMenuFic45_Click(ByVal Ctrl As Office.CommandBarButton, _
+    CancelDefault As Boolean)
+On Error GoTo gereErreur
+Shell "Excel.exe """ & pathDATA & "\CheckLists\Check list Requests Transport.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+End Sub
+
+
+Private Sub Application_ItemContextMenuDisplay( _
+        ByVal CommandBar As Office.CommandBar, _
+        ByVal Selection As Selection)
+
+    Dim objButtonOpenTicket As CommandBarButton
+    Dim objButtonCloseTicket As CommandBarButton
+    Dim objButtonFreeTicket As CommandBarButton
+    
+    Dim intButtonIndex As Integer
+    Dim intCounter As Integer
+
+    'Test si 1 seul objet est sélectionné
+    If Selection.count = 1 Then
+            Set objButtonOpenTicket = CommandBar.Controls.Add( _
+                            msoControlButton, , , , True)
+            With objButtonOpenTicket
+                .Style = msoButtonIconAndCaption
+                .Caption = "Open ticket"
+                .FaceId = 1715
+                .OnAction = "OpenTicket"
+            End With
+            Set objButtonCloseTicket = CommandBar.Controls.Add( _
+                            msoControlButton, , , , True)
+            With objButtonCloseTicket
+                .Style = msoButtonIconAndCaption
+                .Caption = "Close ticket"
+                .FaceId = 1716
+                .OnAction = "CloseTicket"
+            End With
+            Set objButtonFreeTicket = CommandBar.Controls.Add( _
+                            msoControlButton, , , , True)
+            With objButtonFreeTicket
+                .Style = msoButtonIconAndCaption
+                .Caption = "Free ticket"
+                .FaceId = 2059
+                .OnAction = "freeTicket"
+            End With
+
+    End If
+    End Sub
+    
+
+
+
+
+
+Private Sub oMenuFicDoc10_Click(ByVal Ctrl As Office.CommandBarButton, CancelDefault As Boolean)
+
+On Error GoTo gereErreur
+
+Shell "Excel.exe """ & pathDATA & "\Comite Operationnel\Activite.xlsx""", vbNormalFocus
+Exit Sub
+gereErreur:
+    MsgBox Err.Description
+    
+End Sub
+
+Private Sub oMenuFicDoc11_Click(ByVal Ctrl As Office.CommandBarButton, CancelDefault As Boolean)
+
+Dim d1 As Date
+Dim d2 As Long
+Dim sNomFichier As String
+Dim sNomRepertoire As String
+Dim sNomCompletFichier As String
+Dim sNomTrouve As String
+
+Dim IsoWeekNumber As Integer
+Dim IsoWeekNumberInitial As Integer
+
+
+On Error GoTo gereErreur
+
+
+' Public Function IsoWeekNumber(d1 As Date) As Integer
+' Attributed to Daniel Maher
+d1 = Date
+d2 = DateSerial(Year(d1 - Weekday(d1 - 1) + 4), 1, 3)
+IsoWeekNumberInitial = Int((d1 - d2 + Weekday(d2) + 5) / 7)
+
+
+IsoWeekNumber = IsoWeekNumberInitial
+' MsgBox "Numéro de semaine actuelle : " & CStr(IsoWeekNumber)
+
+
+
+Do
+    sNomFichier = "MoM_Comite_Operationnel_Week" & CStr(IsoWeekNumber) & ".pptx"
+    sNomRepertoire = pathDATA & "\MoM\Comite Operationnel"
+    sNomCompletFichier = sNomRepertoire & "\" & sNomFichier
+    ' MsgBox "sNomCompletFichier = " & Chr(34) & sNomCompletFichier & Chr(34)
+    sNomTrouve = ""
+    sNomTrouve = Dir(sNomCompletFichier, vbNormal)
+    ' MsgBox "NomTrouve = " & Chr(34) & sNomTrouve & Chr(34)
+    ' Le nom retourné par Dir () en cas de succès est le nom du fichier seul (sans la partie répertoire)
+    
+    If (sNomTrouve = "") Then
+    
+        IsoWeekNumber = IsoWeekNumber - 1
+    Else
+        MsgBox "Semaine recherchée : " & CStr(IsoWeekNumberInitial) & vbCrLf & "Document trouvé pour la semaine " & CStr(IsoWeekNumber)
+        Shell "powerpnt.exe """ & sNomCompletFichier & """", vbNormalFocus
+
+        Exit Do
+    End If
+    
+Loop While (IsoWeekNumber > 0)
+
+
+Exit Sub
+
+
+
+
+
+'''  ### Shell "powerpnt.exe """ & pathDATA & "\Comite Operationnel\Comite_Operationnel_Week02.pptx""", vbNormalFocus
+
+
+gereErreur:
+    MsgBox Err.Description
+    
+
+End Sub
+
+
+Private Sub oMenuFicDoc12_Click(ByVal Ctrl As Office.CommandBarButton, CancelDefault As Boolean)
+
+
+End Sub
