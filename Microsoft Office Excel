@@ -64,10 +64,32 @@ Send a mail
 
 
 ##########################################################
+Combine Files
+##########################################################
+      Sub GetSheets()
+            Path = "C:\Folder\"
+            Filename = Dir(Path & "*.xls")
+
+            ThisWorkbook.Sheets(1).Name = "Combined"
+
+            Do While Filename <> ""
+                  Workbooks.Open Filename:=Path & Filename, ReadOnly:=True
+            For Each Sheet In ActiveWorkbook.Sheets
+     
+            Sheet.Activate
+            Sheets(1).Range("A1").EntireRow.Select
+            Selection.CurrentRegion.Select
+            Selection.Copy Destination:=ThisWorkbook.Sheets("Combined").Range("A1020000").End(xlUp)(2)
+     
+            'Sheet.Copy After:=ThisWorkbook.Sheets(1)
+            Next Sheet
+            Workbooks(Filename).Close
+            Filename = Dir()
+            Loop
+
+      End Sub
+
 
 ##########################################################
 
-
-
-
-
+##########################################################
