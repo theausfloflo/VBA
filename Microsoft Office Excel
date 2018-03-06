@@ -36,7 +36,7 @@ Send a mail
 
 
 ##########################################################
-Send a mail
+Add worksheet with incrementale name & copy template
 ##########################################################
 
       If Range("A1") < Date Then
