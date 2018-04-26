@@ -66,6 +66,7 @@ Add worksheet with incrementale name & copy template
 ##########################################################
 Combine Files
 ##########################################################
+      
       Sub GetSheets()
             Path = "C:\Folder\"
             Filename = Dir(Path & "*.xls")
@@ -89,6 +90,48 @@ Combine Files
 
       End Sub
 
+
+##########################################################
+Check if same value (2columns) and copy row(A:AX) if same
+##########################################################
+
+      Sub compareAndCopy()
+
+          Dim lastRowE As Long
+          Dim lastRowF As Long
+          Dim lastRowM As Long
+          Dim foundTrue As Boolean
+
+          ' stop screen from updating to speed things up
+          Application.ScreenUpdating = False
+          
+          ' define the first data sheet
+          lastRowE = Sheets("Feuil1").Cells(Sheets("Feuil1").Rows.Count, "A").End(xlUp).Row
+          ' define the second data sheet
+          lastRowF = Sheets("Data").Cells(Sheets("Data").Rows.Count, "A").End(xlUp).Row
+          'lastRowM = Sheets("Feuil1").Cells(Sheets("Feuil1").Rows.Count, "B").End(xlUp).Row
+
+          For i = 1 To lastRowE
+              foundTrue = False
+              For j = 1 To lastRowF
+                  ' condition of the same value
+                  If Sheets("Data").Cells(i, 1).Value = Sheets("Feuil1").Cells(j, 1).Value Then
+                      lastRowM = lastRowM + 1
+                      ' update (copy) the corresponding row in the fisrt sheet
+                      Sheets("Data").Range("A:AX").Rows(i).Copy Destination:= _
+                                 Sheets("Feuil1").Range("A:AX").Cells(j, 1)
+                      foundTrue = True
+                      Exit For
+                  End If
+              Next j
+              'If Not foundTrue Then
+              '    MsgBox ("didn't find string: " & Sheets("Sheet2").Cells(i, 2).value)
+              'End If
+          Next i
+
+          ' stop screen from updating to speed things up
+          Application.ScreenUpdating = True
+      End Sub
 
 ##########################################################
 
