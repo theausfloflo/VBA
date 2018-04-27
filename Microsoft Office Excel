@@ -134,5 +134,138 @@ Check if same value (2columns) and copy row(A:AX) if same
       End Sub
 
 ##########################################################
+open other file / filter data / copy to our file empty row
+##########################################################
+
+     Sub Filterindata()
+
+          Set cat1 = Workbooks.Open("file1.xlsx")
+          Set cat2 = Workbooks.Open("file2.xlsx")
+          Set cat3 = Workbooks.Open("file3.xlsx")
+          Set cat4 = Workbooks.Open("file4.xlsx")
+          Set cat5 = Workbooks.Open("file5.xlsx")
+
+      '############################################################################################################################
+      'cat1
+      'Filtering based on current week data
+          cat1.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=10, Criteria1:=xlFilterThisWeek, Operator:=xlFilterDynamic
+          cat1.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=8, Criteria1:=Array("Name1", _
+                                          "Name2", _
+                                          "Name3", _
+                                          "Name4"), _
+                          Operator:=xlFilterValues
+
+          cat1.Worksheets("Incidents").Range("B3:BX500000").Copy
+          'x.Sheets("Data").Range("A1").PasteSpecial
+
+            'to last empty row
+          I = ThisWorkbook.Worksheets("Data").Cells(Rows.Count, 1).End(3).Row + 1
+          'lastRow = ThisWorkbook.Sheets("Data").Cells(I, 1)
+          ThisWorkbook.Sheets("Data").Cells(I, 1).PasteSpecial
+
+          'ThisWorkbook.Sheets("Data").Range("A2:AX22").Delete (xlShiftUp)
+
+          Application.DisplayAlerts = False
+          cat1.Close savechanges:=False
+
+      '############################################################################################################################
+      'cat2
+      'Filtering based on current week data
+          cat1.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=10, Criteria1:=xlFilterThisWeek, Operator:=xlFilterDynamic
+          cat2.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=8, Criteria1:=Array("Name1", _
+                                          "Name2", _
+                                          "Name3", _
+                                          "Name4"), _
+                          Operator:=xlFilterValues
+
+          cat2.Worksheets("Incidents").Range("B3:BX500000").Copy
+          'x.Sheets("Data").Range("A1").PasteSpecial
+
+            'to last empty row
+          I = ThisWorkbook.Worksheets("Data").Cells(Rows.Count, 1).End(3).Row + 1
+          'lastRow = ThisWorkbook.Sheets("Data").Cells(I, 1)
+          ThisWorkbook.Sheets("Data").Cells(I, 1).PasteSpecial
+
+          'ThisWorkbook.Sheets("Data").Range("A2:AX22").Delete (xlShiftUp)
+
+          Application.DisplayAlerts = False
+          cat2.Close savechanges:=False
+
+
+      '############################################################################################################################
+      'cat3
+      'Filtering based on current week data
+          cat3.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=10, Criteria1:=xlFilterThisWeek, Operator:=xlFilterDynamic
+          cat3.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=8, Criteria1:=Array("Name1", _
+                                          "Name2", _
+                                          "Name3", _
+                                          "Name4"), _
+                          Operator:=xlFilterValues
+
+          cat3.Worksheets("Incidents").Range("B3:BX500000").Copy
+          'x.Sheets("Data").Range("A1").PasteSpecial
+
+            'to last empty row
+          I = ThisWorkbook.Worksheets("Data").Cells(Rows.Count, 1).End(3).Row + 1
+          'lastRow = ThisWorkbook.Sheets("Data").Cells(I, 1)
+          ThisWorkbook.Sheets("Data").Cells(I, 1).PasteSpecial
+
+          'ThisWorkbook.Sheets("Data").Range("A2:AX22").Delete (xlShiftUp)
+
+          Application.DisplayAlerts = False
+          cat3.Close savechanges:=False
+
+      '############################################################################################################################
+      'cat4
+      'Filtering based on current week data
+          cat4.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=10, Criteria1:=xlFilterThisWeek, Operator:=xlFilterDynamic
+          cat4.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=8, Criteria1:=Array("Name1", _
+                                          "Name2", _
+                                          "Name3", _
+                                          "Name4"), _
+                          Operator:=xlFilterValues
+
+          cat4.Worksheets("Incidents").Range("B3:BX500000").Copy
+          'x.Sheets("Data").Range("A1").PasteSpecial
+
+            'to last empty row
+          I = ThisWorkbook.Worksheets("Data").Cells(Rows.Count, 1).End(3).Row + 1
+          'lastRow = ThisWorkbook.Sheets("Data").Cells(I, 1)
+          ThisWorkbook.Sheets("Data").Cells(I, 1).PasteSpecial
+
+          'ThisWorkbook.Sheets("Data").Range("A2:AX22").Delete (xlShiftUp)
+
+          Application.DisplayAlerts = False
+          cat4.Close savechanges:=False
+
+      '############################################################################################################################
+      'cat5
+      'Filtering based on current week data
+          cat5.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=10, Criteria1:=xlFilterThisWeek, Operator:=xlFilterDynamic
+          cat5.Sheets("Incidents").Range("A2:AX500000").AutoFilter Field:=8, Criteria1:=Array("Name1", _
+                                          "Name2", _
+                                          "Name3", _
+                                          "Name4"), _
+                          Operator:=xlFilterValues
+
+          cat5.Worksheets("Incidents").Range("B3:BX500000").Copy
+          'x.Sheets("Data").Range("A1").PasteSpecial
+
+            'to last empty row
+          I = ThisWorkbook.Worksheets("Data").Cells(Rows.Count, 1).End(3).Row + 1
+          'lastRow = ThisWorkbook.Sheets("Data").Cells(I, 1)
+          ThisWorkbook.Sheets("Data").Cells(I, 1).PasteSpecial
+
+          'ThisWorkbook.Sheets("Data").Range("A2:AX22").Delete (xlShiftUp)
+
+          Application.DisplayAlerts = False
+          cat5.Close savechanges:=False
+
+
+      End Sub
+
+
+
+##########################################################
 
 ##########################################################
